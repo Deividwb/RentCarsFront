@@ -9,6 +9,7 @@ import DriversReport from "./components/Reports/driversReport";
 import LoaderReport from "./components/Reports/loaderReport";
 import Teste from "./components/teste";
 import { useSelector } from "react-redux";
+import DriversTable from "./components/Driver/table/DriversTable";
 
 const Router = () => {
   const menuActive = useSelector((state) => state.menu.isActive);
@@ -27,13 +28,13 @@ const Router = () => {
             padding: "0px 30px",
             height: "100vh",
             overflow: "auto",
-            paddingBottom: 100,
+            paddingBottom: 120,
           }}
         >
           <Routes>
             <Route path="/" element={<Menu />} />
+            <Route path="/driver-table" element={<DriversTable />} />
             <Route path="/register_driver" element={<RegisterDriver />} />
-            <Route path="/driver-table" element={<DriverTable />} />
             <Route path="/teste" element={<Teste />} />
             <Route
               path="/loader-report"

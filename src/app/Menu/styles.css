@@ -324,4 +324,7 @@ header .image-text .header-text {
   display:none;
 } */
 
+.table-row:hover {
+  background-color: #0a944f; /* Substitua #f1f1f1 pela cor desejada */
+}
 

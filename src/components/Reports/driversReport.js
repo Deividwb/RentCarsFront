@@ -33,9 +33,7 @@ const DriversReport = () => {
     const response = await axios.get("http://localhost:8080/drivers");
 
     setFormDriver(response.data);
-    console.log("teste 1: ", response.data);
   }
-  console.log("teste: ", formDriver);
 
   useEffect(() => {
     loadDrivers();

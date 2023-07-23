@@ -1,32 +1,32 @@
-export const headCells =[
-    {
-        id: "name",
-        numeric: false,
-        disablePadding: true,
-        label: "Nome",
-      },
-      {
-        id: "calories",
-        numeric: true,
-        disablePadding: false,
-        label: "Idade",
-      },
-      {
-        id: "fat",
-        numeric: true,
-        disablePadding: false,
-        label: "Endereço",
-      },
-      {
-        id: "carbs",
-        numeric: true,
-        disablePadding: false,
-        label: "Rua",
-      },
-      {
-        id: "protein",
-        numeric: true,
-        disablePadding: false,
-        label: "Sexo",
-      },
-]
+export const headCells = [
+  {
+    id: "name",
+    numeric: false,
+    disablePadding: true,
+    label: "Nome",
+  },
+  {
+    id: "calories",
+    numeric: true,
+    disablePadding: false,
+    label: "Idade",
+  },
+  {
+    id: "fat",
+    numeric: true,
+    disablePadding: false,
+    label: "Endereço",
+  },
+  {
+    id: "carbs",
+    numeric: true,
+    disablePadding: false,
+    label: "Cidade",
+  },
+  {
+    id: "protein",
+    numeric: true,
+    disablePadding: false,
+    label: "Sexo",
+  },
+];

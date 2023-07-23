@@ -87,7 +87,7 @@ const Menu = () => {
                 </li>
 
                 <li>
-                  <NavLink to={"/driver-table"}>
+                  <NavLink to={"/drivers-table"}>
                     <SupervisedUserCircleTwoToneIcon className="bx bx-home-alt icon" />
                     <span className="text nav-text">
                       {language ? "Motoristas" : "Driver"}

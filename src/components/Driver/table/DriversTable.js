@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import CustomTable from "../../../componentsLibrary/tables/CustomTable";
+import CustomTable from "../../../componentsLibrary/tables/customTable/CustomTable";
 import { headCells } from "../utils/driversTable.constants";
 import axios from "axios";
 import DriversRow from "./DriversRow";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import LoaderReport from "../../Reports/loaderReport";
-import { Button } from "@mui/material";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import { baseUrlRoute } from "../utils/drivers.constants";
 
 const DriversTable = () => {
   const [formDriver, setFormDriver] = useState([]);
@@ -26,14 +23,10 @@ const DriversTable = () => {
 
   return (
     <>
-      <PDFDownloadLink document={<LoaderReport />} fileName="driver.pdf">
-        <Button variant="contained" startIcon={<PictureAsPdfIcon />}>
-          Gerar Relatório
-        </Button>
-      </PDFDownloadLink>
       <CustomTable
         data={formDriver}
         headCells={headCells}
+        redirect={`/${baseUrlRoute}/new`}
         checkBox
         rowComponent={DriversRow}
         title={"Motoristas"}

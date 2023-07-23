@@ -21,7 +21,7 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
-import api from "../../Services/api";
+// import api from "../../Services/api";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {
@@ -37,7 +37,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import DriversReport from "../Reports/driversReport";
 import LoaderReport from "../Reports/loaderReport";
 import { useSelector } from "react-redux";
-import DialogModal from "../../componentsLibrary/Modal/Dialog/DialogModal";
+import DialogModal from "../../componentsLibrary/Modal/dialog/DialogModal";
 import CustonTextField from "../../componentsLibrary/Inputs/TextField/CustonTextField";
 
 function createData(name, calories, fat, carbs, protein) {
@@ -105,7 +105,7 @@ const headCells = [
     id: "city",
     numeric: true,
     disablePadding: false,
-    label: "Rua",
+    label: "Cidade",
   },
   {
     id: "sexo",
@@ -260,7 +260,6 @@ export default function DriverTable() {
       const response = await axios.get("https://localhost:7184/api/Drivers");
       setFormDriver(response.data);
     } catch (error) {
-      console.error("Error loading drivers:", error);
       // Handle the error appropriately (e.g., show an error message to the user)
     }
   }
@@ -339,7 +338,6 @@ export default function DriverTable() {
         data
       );
       setFormDriver(response.data);
-      console.log("Aqui", response);
     } catch (error) {
       console.error("Error loading drivers:", error);
       // Trate o erro adequadamente (por exemplo, exiba uma mensagem de erro para o usuário)
@@ -347,10 +345,8 @@ export default function DriverTable() {
   }
 
   const handleClickAdd = () => {
-    console.log("To aqui", openModal);
     // handlePost();
     setOpenModal(true);
-    console.log("To clicado", openModal);
   };
 
   const ero = false;
@@ -442,7 +438,6 @@ export default function DriverTable() {
                           />
                         </TableCell>
 
-                        
                         <TableCell
                           component="th"
                           id={labelId}

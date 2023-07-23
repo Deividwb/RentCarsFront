@@ -158,10 +158,10 @@ export default function PrimarySearchAppBar() {
               />
             </IconButton>
             <div className="text header-text">
-                <span className="name">Manager Driver</span>
-                <br/>
-                <span className="profession">Apps</span>
-              </div>
+              <span className="name">Manager Driver</span>
+              <br />
+              <span className="profession">Apps</span>
+            </div>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
@@ -210,7 +210,7 @@ export default function PrimarySearchAppBar() {
         </AppBar>
         {renderMobileMenu}
         {renderMenu}
-      </Box>                                          
+      </Box>
 
       <Box
         position="fixed"
@@ -218,11 +218,11 @@ export default function PrimarySearchAppBar() {
           marginLeft: 35,
           width: "79.7%",
           minHeight: 40,
-          marginTop:18,
+          marginTop: 18,
           zIndex: 100,
         }}
       >
-        <LinearProgress variant="determinate" value={progress} />
+        {/* <LinearProgress variant="determinate" value={progress} /> //implementar depois */}
       </Box>
     </>
   );

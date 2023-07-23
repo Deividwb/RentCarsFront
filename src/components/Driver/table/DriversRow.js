@@ -2,9 +2,6 @@ import React from "react";
 import { TableCell, TableRow } from "@mui/material";
 
 const DriversRow = (props, labelId) => {
-  console.log("Props:", props);
-  console.log("Cheguei:");
-
   const open = false;
 
   return (

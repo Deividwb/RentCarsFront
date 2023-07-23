@@ -10,6 +10,7 @@ import LoaderReport from "./components/Reports/loaderReport";
 import Teste from "./components/teste";
 import { useSelector } from "react-redux";
 import DriversTable from "./components/Driver/table/DriversTable";
+import DriversForm from "./components/Driver/form/tabs/DriversForm";
 
 const Router = () => {
   const menuActive = useSelector((state) => state.menu.isActive);
@@ -25,7 +26,7 @@ const Router = () => {
           className={menuActive ? "homeTwo" : "home"}
           style={{
             marginTop: 110,
-            padding: "0px 30px",
+            padding: "0 30px",
             height: "100vh",
             overflow: "auto",
             paddingBottom: 120,
@@ -33,7 +34,9 @@ const Router = () => {
         >
           <Routes>
             <Route path="/" element={<Menu />} />
-            <Route path="/driver-table" element={<DriversTable />} />
+            <Route path="/drivers-table" element={<DriversTable />} />
+            <Route path="/drivers-table/new" element={<DriversForm />} />
+
             <Route path="/register_driver" element={<RegisterDriver />} />
             <Route path="/teste" element={<Teste />} />
             <Route

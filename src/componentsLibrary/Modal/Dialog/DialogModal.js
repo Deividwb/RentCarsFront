@@ -1,9 +1,5 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
+import React from "react";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 
@@ -11,13 +7,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function DialogModal({ open, setOpenModal, title, children }) {
-  // const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    // setOpen(true);
-  };
-
+const CustomDialogModal = ({ open, setOpenModal, title, children }) => {
   const handleClose = () => {
     setOpenModal(false);
   };
@@ -31,9 +21,12 @@ export default function DialogModal({ open, setOpenModal, title, children }) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle style={{ fontWeight: 700 }}>{title}</DialogTitle>
+
         {children}
       </Dialog>
     </div>
   );
-}
+};
+
+export default CustomDialogModal;

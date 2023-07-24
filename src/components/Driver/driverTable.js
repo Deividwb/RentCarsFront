@@ -37,8 +37,8 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import DriversReport from "../Reports/driversReport";
 import LoaderReport from "../Reports/loaderReport";
 import { useSelector } from "react-redux";
-import DialogModal from "../../componentsLibrary/Modal/dialog/DialogModal";
 import CustonTextField from "../../componentsLibrary/Inputs/TextField/CustonTextField";
+import CustomDialogModal from "../../componentsLibrary/Modal/dialog/DialogModal";
 
 function createData(name, calories, fat, carbs, protein) {
   return {
@@ -368,7 +368,7 @@ export default function DriverTable() {
         >
           Adicionar
         </Button> */}
-        <DialogModal
+        <CustomDialogModal
           open={openModal}
           setOpenModal={setOpenModal}
           title={"Motoristas"}

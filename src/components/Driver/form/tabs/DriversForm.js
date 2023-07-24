@@ -1,6 +1,7 @@
 import React from "react";
 import TemplateTableForm from "../../../../templates/templateTableForm/TemplateTableForm";
 import Drivers from "./Drivers";
+import DriversSubmit from "../DriversSubmit";
 
 const DriversForm = () => {
   const arrayTabs = [
@@ -11,7 +12,7 @@ const DriversForm = () => {
   ]
   return (
     <>
-      <TemplateTableForm arrayTabs={arrayTabs}/>
+      <TemplateTableForm arrayTabs={arrayTabs} footer= {<DriversSubmit />}/>
     </>
   );
 };

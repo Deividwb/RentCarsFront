@@ -2,7 +2,13 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { buttonStyles } from "./style";
 
-const CustomContainedButton = ({ color, handleClick, startIcon, label }) => {
+const CustomContainedButton = ({
+  color,
+  size,
+  handleClick,
+  startIcon,
+  label,
+}) => {
   const classes = buttonStyles();
 
   return (
@@ -10,10 +16,10 @@ const CustomContainedButton = ({ color, handleClick, startIcon, label }) => {
       <Button
         variant="contained"
         color={color}
-        size="large"
+        size={size}
         startIcon={startIcon}
         disabled={false}
-        className={classes.paperButton}
+        // className={classes.paperButton}
         onClick={handleClick}
       >
         {label}

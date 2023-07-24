@@ -5,6 +5,8 @@ export default function CustonTextField({
   id,
   name,
   label,
+  value,
+  handleChange,
   type,
   disabled,
   required = false,
@@ -59,6 +61,8 @@ export default function CustonTextField({
         id={id}
         name={name}
         label={label}
+        value={value}
+        onChange={handleChange}
         variant="standard"
         disabled={false}
         placeholder

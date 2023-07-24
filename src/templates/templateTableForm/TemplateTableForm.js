@@ -2,9 +2,10 @@ import React from "react";
 import { Card } from "@mui/material";
 import { templateTableFormStyles } from "./style";
 import CustomTabs from "../../componentsLibrary/tabs/CustomTabs";
-import CustomContainedButton from "../../componentsLibrary/buttons/CustomContainedButton";
+import { CardFooter } from "reactstrap";
 
-const TemplateTableForm = ({ arrayTabs }) => {
+
+const TemplateTableForm = ({ arrayTabs, footer }) => {
   const classes = templateTableFormStyles();
 
   return (
@@ -12,7 +13,9 @@ const TemplateTableForm = ({ arrayTabs }) => {
       <Card>
         <CustomTabs arrayTabs={arrayTabs} />
 
-        <div
+        <CardFooter className= {classes.footer}>{footer}</CardFooter>
+
+        {/* <div
           style={{ display: "flex", justifyContent: "flex-end", padding: 25 }}
         >
           <CustomContainedButton color="inherit" label="Cancelar" />
@@ -20,7 +23,7 @@ const TemplateTableForm = ({ arrayTabs }) => {
           <div style={{ paddingLeft: 50 }}>
             <CustomContainedButton label="Salvar" />
           </div>
-        </div>
+        </div> */}
       </Card>
     </>
   );

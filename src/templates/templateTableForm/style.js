@@ -9,4 +9,7 @@ export const templateTableFormStyles = makeStyles({
     display: "flex",
     height: "100%",
   },
+  footer: {
+    background: "#F0F8FF",
+  },
 });

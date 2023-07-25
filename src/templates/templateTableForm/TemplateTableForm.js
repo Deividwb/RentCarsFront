@@ -4,7 +4,6 @@ import { templateTableFormStyles } from "./style";
 import CustomTabs from "../../componentsLibrary/tabs/CustomTabs";
 import { CardFooter } from "reactstrap";
 
-
 const TemplateTableForm = ({ arrayTabs, footer }) => {
   const classes = templateTableFormStyles();
 
@@ -13,17 +12,7 @@ const TemplateTableForm = ({ arrayTabs, footer }) => {
       <Card>
         <CustomTabs arrayTabs={arrayTabs} />
 
-        <CardFooter className= {classes.footer}>{footer}</CardFooter>
-
-        {/* <div
-          style={{ display: "flex", justifyContent: "flex-end", padding: 25 }}
-        >
-          <CustomContainedButton color="inherit" label="Cancelar" />
-
-          <div style={{ paddingLeft: 50 }}>
-            <CustomContainedButton label="Salvar" />
-          </div>
-        </div> */}
+        <CardFooter className={classes.footer}>{footer}</CardFooter>
       </Card>
     </>
   );

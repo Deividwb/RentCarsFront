@@ -9,6 +9,7 @@ export const initialState = {
     sexo: "",
   },
   messages: {},
+  getAllDrivers: [],
 };
 
 const drivers = createSlice({
@@ -21,16 +22,25 @@ const drivers = createSlice({
     updateDriversMessages: (state, action) => {
       state.messages = { ...state.messages, ...action.payload };
     },
+    updategetAllDrivers: (state, action) => {
+      state.getAllDrivers = action.payload;
+    },
     clearDrivers: () => initialState,
   },
 });
 
-export const { updateDriversData, updateDriversMessages, clearDrivers } =
-  drivers.actions;
+export const {
+  updateDriversData,
+  updateDriversMessages,
+  updategetAllDrivers,
+  clearDrivers,
+} = drivers.actions;
 
 export const selectDrivers = (state) => state.drivers.driversData;
 export const selectDriversData = (state) => state.drivers.driversData.data;
 export const selectDriversMessages = (state) =>
   state.drivers.driversData.messages;
+export const selectAllDrivers = (state) =>
+  state.drivers.driversData.getAllDrivers;
 
 export default drivers.reducer;

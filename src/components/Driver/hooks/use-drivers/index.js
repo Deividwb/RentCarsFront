@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import {
+  selectAllDrivers,
   selectDriversData,
   selectDriversMessages,
 } from "../../store/drivers/drivers.store";
@@ -12,4 +13,8 @@ const useDriversMessages = () => {
   return useSelector(selectDriversMessages);
 };
 
-export { useDriversData, useDriversMessages };
+const useAllDrivers = () => {
+  return useSelector(selectAllDrivers);
+};
+
+export { useDriversData, useDriversMessages, useAllDrivers };

@@ -10,7 +10,7 @@ export const useSubmit = () => {
   const prepareData = {
     ...driversData,
     name: driversData.name,
-    age: driversData.age,
+    age: driversData.age,                                 
     address: driversData.address,
     city: driversData.city,
     sexo: driversData.sexo,

@@ -6,6 +6,8 @@ import { DialogTitle } from "@mui/material";
 import { CardFooter } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { useSubmit } from "../hooks/use-submit/driversSubmit";
+import SaveIcon from "@mui/icons-material/Save";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 
 const DriversSubmit = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -67,10 +69,19 @@ const DriversSubmit = () => {
           color="inherit"
           label="Cancelar"
           handleClick={handleOpen}
+          startIcon={
+            <>
+              <KeyboardReturnIcon />
+            </>
+          }
         />
 
         <div style={{ paddingLeft: 50 }}>
-          <CustomContainedButton label="Salvar" handleClick={onDriversSubmit} />
+          <CustomContainedButton
+            label="Salvar"
+            handleClick={onDriversSubmit}
+            startIcon={<SaveIcon />}
+          />
         </div>
       </div>
     </>

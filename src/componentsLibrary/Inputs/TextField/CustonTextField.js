@@ -12,6 +12,7 @@ export default function CustonTextField({
   required = false,
   error,
   helperText,
+  startIcon
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -73,6 +74,7 @@ export default function CustonTextField({
         style={textFieldStyle}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        startIcon = {startIcon}
       />
     </>
   );

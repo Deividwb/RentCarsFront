@@ -1,12 +1,12 @@
-import { combineReducers, legacy_createStore as createStore } from "redux";
+import { applyMiddleware, legacy_createStore as createStore } from "redux";
+import createSagaMiddleware from "redux-saga";
+import rootReducer from "./modules/rootReducer";
+import rootSaga from "./modules/rootSaga";
 
-import activeMenuReducer from "./activeMenuReducer";
-import drivers from "../components/Driver/store/index.store";
+const sagaMiddleware = createSagaMiddleware();
 
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-const rootReducer = combineReducers({
-  menu: activeMenuReducer,
-  drivers: drivers
-});
+sagaMiddleware.run(rootSaga);
 
-export default createStore(rootReducer);
+export default store;

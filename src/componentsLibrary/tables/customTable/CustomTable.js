@@ -25,6 +25,8 @@ import "../../../app/Menu/styles.css";
 import { tableStyles } from "./style";
 import { useState } from "react";
 import CustomContainedButton from "../../buttons/CustomContainedButton";
+import AddIcon from "@mui/icons-material/Add";
+
 import { useNavigate } from "react-router-dom";
 
 function descendingComparator(a, b, orderBy) {
@@ -267,7 +269,12 @@ const CustomTable = ({
 
   return (
     <>
-      <CustomContainedButton label= "Incluir" handleClick={handleNew} />
+      <CustomContainedButton
+        label="Incluir"
+        size="large"
+        handleClick={handleNew}
+        startIcon={<AddIcon />}
+      />
       <Box sx={{ width: "100%" }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
           <EnhancedTableToolbar numSelected={selected.length} title={title} />

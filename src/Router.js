@@ -36,6 +36,7 @@ const Router = () => {
             <Route path="/" element={<Menu />} />
             <Route path="/drivers-table" element={<DriversTable />} />
             <Route path="/drivers-table/new" element={<DriversForm />} />
+            <Route path="/drivers-table/:id/edit" element={<DriversForm />} />
 
             <Route path="/register_driver" element={<RegisterDriver />} />
             <Route path="/teste" element={<Teste />} />

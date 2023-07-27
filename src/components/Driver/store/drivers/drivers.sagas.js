@@ -2,29 +2,13 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { createAction } from "@reduxjs/toolkit";
 import api from "../../../../services/api";
 import { baseUrlApi } from "../../utils/drivers.constants";
-import { updategetAllDrivers } from "./drivers.store";
+import { updateDriversData, updategetAllDrivers } from "./drivers.store";
 
 export const getAllDrivers = createAction("drivers/getAllDrivers");
+export const getByIdDrivers = createAction("drivers/getByIdDrivers");
+export const deleteDrivers = createAction("drivers/deleteDrivers");
 export const postDrivers = createAction("drivers/postDrivers");
-
-// export const getByIdEfdSocialSecurityContribution = createAction(
-//   "efdSocialSecurityContribution/getByIdEfdSocialSecurityContribution"
-// );
-// export const deleteEfdSocialSecurityContribution = createAction(
-//   "efdSocialSecurityContribution/deleteEfdSocialSecurityContribution"
-// );
-// export const getAllEfdSocialSecurityContribution = createAction(
-//   "efdSocialSecurityContribution/getAllEfdSocialSecurityContribution"
-// );
-// export const createEfdSocialSecurityContribution = createAction(
-//   "efdSocialSecurityContribution/createEfdSocialSecurityContribution"
-// );
-// export const updateEfdSocialSecurityContribution = createAction(
-//   "efdSocialSecurityContribution/updateEfdSocialSecurityContribution"
-// );
-// export const getModalEfdSocialSecurityContribution = createAction(
-//   "efdSocialSecurityContribution/getModalEfdSocialSecurityContribution"
-// );
+export const putDrivers = createAction("drivers/putDrivers");
 
 function* getAllDriversSagas() {
   try {
@@ -35,102 +19,70 @@ function* getAllDriversSagas() {
   }
 }
 
-function* postDriversSagas() {
+function* getByIdDriversSagas({ payload }) {
+  try {
+    const { data } = yield call(
+      api.get,
+      `/${baseUrlApi}/${"id?id="}${payload.id}`
+    );
+
+    const prepareData = {
+      ...data,
+    };
+    console.log("Dentro SagasByid", prepareData);
+    yield put(updateDriversData(prepareData));
+  } catch (error) {
+    console.log("Rota:", `/${baseUrlApi}/${"id?id="}${payload.id}`);
+    console.log("Tratar o erro:", error);
+  }
+}
+
+function* deleteDriversSagas({ payload }) {
+  try {
+    yield call(api.delete, `/${baseUrlApi}/${"id?id="}${payload.id}`);
+    yield put(getAllDrivers());
+  } catch (error) {
+    console.log("Tratar o erro:", error);
+  }
+}
+
+//////imprementar/////////////////////////////////
+function* postDriversSagas({ payload }) {
   //   const { establishmentReducer } = yield select();
   //   const { companyReferenceId, startValidityDate } = establishmentReducer;
 
   try {
-    const { data } = yield call(api.post, `/${baseUrlApi}`, {
+    const { data } = yield call(api.post, `/${baseUrlApi}`, payload.data, {
       //   headers: {
       //     //   company_reference_id: companyReferenceId,
       //     //   start_validity_date: startValidityDate,
       //   },
     });
     console.log("DentroSagas:", data);
-    // yield put(updategetAllDrivers(data));
+    yield put(getAllDrivers());
   } catch (error) {
-    // yield put(updategetAllDrivers([]));
+    console.log("Tratar o erro:", error);
   }
 }
 
-// function* createEfdSocialSecurityContributionSagas({ payload }) {
-//   const { establishmentReducer } = yield select();
-//   const { companyReferenceId, startValidityDate } = establishmentReducer;
-//   yield call(
-//     apiTax.post,
-//     `/${baseUrlApi}/${baseUrlRouteItems}/${payload.parentId}/${baseUrlRouteAdjustment}`,
-//     payload.data,
-//     {
-//       headers: {
-//         company_reference_id: companyReferenceId,
-//         start_validity_date: startValidityDate,
-//       },
-//     }
-//   );
-//   //   yield put(postEfdTableContribution());
-// }
+function* putDriversSagas({ payload }) {
+  try {
+    yield call(
+      api.put,
+      `/${baseUrlApi}/${"id?id="}${payload.id}`,
+      payload.data
+    );
 
-// function* updateEfdSocialSecurityContributionSagas({ payload }) {
-//   const { establishmentReducer } = yield select();
-//   const { companyReferenceId, startValidityDate } = establishmentReducer;
-//   yield call(
-//     apiTax.put,
-//     `/${baseUrlApi}/${baseUrlRouteItems}/${payload.parentId}/${baseUrlRouteAdjustment}/${payload.id}`,
-//     payload.data,
-//     {
-//       headers: {
-//         company_reference_id: companyReferenceId,
-//         start_validity_date: startValidityDate,
-//       },
-//     }
-//   );
-//   //   yield put(postEfdTableContribution());
-// }
-
-// function* deleteEfdSocialSecurityContributionSagas({ payload }) {
-//   const { establishmentReducer } = yield select();
-//   const { companyReferenceId, startValidityDate } = establishmentReducer;
-
-//   yield call(
-//     apiTax.delete,
-//     `/${baseUrlApi}/${baseUrlRouteItems}/${payload.parentId}/${baseUrlRouteAdjustment}/${payload.id}`,
-//     payload.data,
-//     {
-//       headers: {
-//         company_reference_id: companyReferenceId,
-//         start_validity_date: startValidityDate,
-//       },
-//     }
-//   );
-//   //   yield put(postEfdTableContribution());
-// }
-
-// function* getModalEfdSocialSecurityContributionSagas({ payload }) {
-//   const { data } = yield call(
-//     apiTax.get,
-//     `/${baseUrlApi}/${baseUrlRoute_Items}/${payload.parentId}/${baseUrlRouteInvoices}`
-//   );
-//   yield put(updateOctoVisibilityModal(data));
-// }
+    yield put(getAllDrivers());
+  } catch (error) {
+    console.log("Tratar o erro:", error);
+  }
+}
 
 export default all([
   takeLatest(getAllDrivers.type, getAllDriversSagas),
+  takeLatest(getByIdDrivers.type, getByIdDriversSagas),
+  takeLatest(deleteDrivers.type, deleteDriversSagas),
   takeLatest(postDrivers.type, postDriversSagas),
-
-  //   takeLatest(
-  //     createEfdSocialSecurityContribution.type,
-  //     withDefaultInterceptor(createEfdSocialSecurityContributionSagas)
-  //   ),
-  //   takeLatest(
-  //     deleteEfdSocialSecurityContribution.type,
-  //     withDefaultInterceptor(deleteEfdSocialSecurityContributionSagas)
-  //   ),
-  //   takeLatest(
-  //     updateEfdSocialSecurityContribution.type,
-  //     withDefaultInterceptor(updateEfdSocialSecurityContributionSagas)
-  //   ),
-  //   takeLatest(
-  //     getModalEfdSocialSecurityContribution.type,
-  //     withInterceptor(getModalEfdSocialSecurityContributionSagas)
-  //   ),
+  takeLatest(putDrivers.type, putDriversSagas),
 ]);

@@ -29,4 +29,12 @@ export const headCells = [
     disablePadding: false,
     label: "Sexo",
   },
+  {
+    id: "action",
+    numeric: true,
+    disablePadding: false,
+    label: "Ações",
+    sort: true,
+    align: "center",
+  },
 ];

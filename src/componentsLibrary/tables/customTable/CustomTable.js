@@ -303,7 +303,7 @@ const CustomTable = ({
                     <TableRow
                       className={classes.hoverRow}
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      // onClick={(event) => handleClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -316,13 +316,13 @@ const CustomTable = ({
                           <Checkbox
                             color="primary"
                             checked={isItemSelected}
+                            onClick={(event) => handleClick(event, row.name)}
                             inputProps={{
                               "aria-labelledby": labelId,
                             }}
                           />
                         </TableCell>
                       )}
-
                       {rowComponent(row, labelId)}
                     </TableRow>
                   );

@@ -35,6 +35,6 @@ export const headCells = [
     disablePadding: false,
     label: "Ações",
     sort: true,
-    align: "center",
+    align: "left",
   },
 ];

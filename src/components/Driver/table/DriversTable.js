@@ -19,12 +19,12 @@ const DriversTable = () => {
 
   useEffect(() => {
     setLoadAllDrivers();
-    return () => dispatch(clearDrivers());
+    // return () => dispatch(clearDrivers());
   }, [dispatch, setLoadAllDrivers]);
 
   return (
     <>
-      <RenderIf condition={allDrivers}>
+      <RenderIf condition={allDrivers.length}>
         <CustomTable
           data={allDrivers}
           headCells={headCells}

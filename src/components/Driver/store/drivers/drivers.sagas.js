@@ -2,7 +2,11 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { createAction } from "@reduxjs/toolkit";
 import api from "../../../../services/api";
 import { baseUrlApi } from "../../utils/drivers.constants";
-import { updateDriversData, updategetAllDrivers } from "./drivers.store";
+import {
+  clearDrivers,
+  updateDriversData,
+  updategetAllDrivers,
+} from "./drivers.store";
 
 export const getAllDrivers = createAction("drivers/getAllDrivers");
 export const getByIdDrivers = createAction("drivers/getByIdDrivers");
@@ -13,6 +17,7 @@ export const putDrivers = createAction("drivers/putDrivers");
 function* getAllDriversSagas() {
   try {
     const { data } = yield call(api.get, `/${baseUrlApi}`);
+    yield put(clearDrivers());
     yield put(updategetAllDrivers(data));
   } catch (error) {
     console.log("Tratar o erro:", error);
@@ -40,6 +45,7 @@ function* getByIdDriversSagas({ payload }) {
 function* deleteDriversSagas({ payload }) {
   try {
     yield call(api.delete, `/${baseUrlApi}/${"id?id="}${payload.id}`);
+
     yield put(getAllDrivers());
   } catch (error) {
     console.log("Tratar o erro:", error);

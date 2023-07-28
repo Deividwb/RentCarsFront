@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useSubmit } from "../hooks/use-submit/driversSubmit";
 import SaveIcon from "@mui/icons-material/Save";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+import IconButton from "@mui/material/IconButton";
 
 const DriversSubmit = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -44,19 +45,23 @@ const DriversSubmit = () => {
                   padding: 10,
                 }}
               >
-                <CustomContainedButton
-                  label="Não"
-                  color={"text"}
+                <IconButton
+                  color="primary"
                   size="small"
-                  handleClick={() => setOpenDialog(false)}
-                />
-                <div style={{ paddingLeft: 30 }}>
-                  <CustomContainedButton
-                    label="Sim"
-                    color={"text"}
+                  onClick={() => setOpenDialog(false)}
+                >
+                  NÃO
+                </IconButton>
+
+                <div style={{ paddingLeft: 20 }}>
+                  <IconButton
+                    color="primary"
                     size="small"
-                    handleClick={handleClose}
-                  />
+                    aria-label="delete"
+                    onClick={() => handleClose()}
+                  >
+                    SIM
+                  </IconButton>
                 </div>
               </div>
             </CardFooter>

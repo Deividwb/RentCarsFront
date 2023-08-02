@@ -1,4 +1,4 @@
-import { PDFViewer } from "@react-pdf/renderer";
+// import { PDFViewer } from "@react-pdf/renderer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Menu from "./app/Menu";
@@ -40,23 +40,23 @@ const Router = () => {
 
             <Route path="/register_driver" element={<RegisterDriver />} />
             <Route path="/teste" element={<Teste />} />
-            <Route
+            {/* <Route
               path="/loader-report"
               element={
                 <PDFViewer style={{ width: "100%", height: "90vh" }}>
                   <LoaderReport />
                 </PDFViewer>
               }
-            />
+            /> */}
 
-            <Route
+            {/* <Route
               path="/drivers-report"
               element={
                 <PDFViewer style={{ width: "100%", height: "90vh" }}>
                   <DriversReport />
                 </PDFViewer>
               }
-            />
+            /> */}
           </Routes>
         </div>
       </BrowserRouter>

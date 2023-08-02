@@ -34,7 +34,7 @@ const TemplateActionsButtons = ({
 
   return (
     <>
-      <TableCell align="left" width="12%">
+      <TableCell align="center" width="12%">
         <div className={classes.containerButton}>
           <Tooltip title={"Editar dados"}>
             <IconButton

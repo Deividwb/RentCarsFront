@@ -33,7 +33,7 @@ import {
 } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import { NavLink } from "react-router-dom";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+// import { PDFDownloadLink } from "@react-pdf/renderer";
 import DriversReport from "../Reports/driversReport";
 import LoaderReport from "../Reports/loaderReport";
 import { useSelector } from "react-redux";
@@ -355,11 +355,11 @@ export default function DriverTable() {
     <div>
       <div>
         {/* <NavLink to={"/loader-report"}> */}
-        <PDFDownloadLink document={<LoaderReport />} fileName="driver.pdf">
+        {/* <PDFDownloadLink document={<LoaderReport />} fileName="driver.pdf">
           <Button variant="contained" startIcon={<PictureAsPdfIcon />}>
             Gerar Relatório
           </Button>
-        </PDFDownloadLink>
+        </PDFDownloadLink> */}
 
         {/* <Button
           onClick={() => handleClickAdd()}

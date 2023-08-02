@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
+import { useEffect } from "react";
+import ReactDOM from "react-dom";
 
 export default function CustonTextField({
   id,
@@ -10,9 +12,10 @@ export default function CustonTextField({
   type,
   disabled,
   required = false,
+  startIcon,
   error,
   helperText,
-  startIcon
+  focus
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -23,6 +26,13 @@ export default function CustonTextField({
   const handleBlur = () => {
     setIsFocused(false);
   };
+
+  useEffect(() => {
+    const nameInput = ReactDOM.findDOMNode(document.getElementById(focus));
+    if (nameInput) {
+      nameInput.focus();
+    }
+  }, []);
 
   const textFieldStyle = {
     padding: "0.375rem 0.175rem",
@@ -64,17 +74,17 @@ export default function CustonTextField({
         label={label}
         value={value}
         onChange={handleChange}
+        onBlur={handleBlur}
         variant="standard"
         disabled={false}
         placeholder
         type={type}
-        helperText={helperText}
         required={required}
-        error={error}
         style={textFieldStyle}
         onFocus={handleFocus}
-        onBlur={handleBlur}
-        startIcon = {startIcon}
+        startIcon={startIcon}
+        error={error}
+        helperText={helperText}
       />
     </>
   );

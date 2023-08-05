@@ -26,10 +26,7 @@ const Router = () => {
           className={menuActive ? "homeTwo" : "home"}
           style={{
             marginTop: 110,
-            padding: "0 30px",
-            height: "100vh",
-            overflow: "auto",
-            paddingBottom: 120,
+            padding: "0 30px",      
           }}
         >
           <Routes>

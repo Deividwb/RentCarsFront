@@ -19,8 +19,8 @@ const CustomContainedButton = ({
         size={size}
         startIcon={startIcon}
         disabled={false}
-        // className={classes.paperButton}
-        onClick={handleClick}
+        className={classes.paperButton}
+        onClick={handleClick}     
       >
         {label}
       </Button>

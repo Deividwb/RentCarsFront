@@ -1,23 +1,20 @@
 import { Grid } from "@material-ui/core";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import CustonTextField from "../../../../componentsLibrary/Inputs/TextField/CustonTextField";
 import ReactDOM from "react-dom";
 import { useDriversData, useDriversMessages } from "../../hooks/use-drivers";
-import { useDispatch } from "react-redux";
-import { updateDriversData } from "../../store/drivers/drivers.store";
 import { useDriversHandlers } from "../../hooks/use-drivers/useDriversHandlers";
 
 const Drivers = () => {
   const driversData = useDriversData();
-  const dispatch = useDispatch();
   const messages = useDriversMessages();
 
-  // useEffect(() => {
-  //   const nameInput = ReactDOM.findDOMNode(document.getElementById("name"));
-  //   if (nameInput) {
-  //     nameInput.focus();
-  //   }
-  // }, []);
+  useEffect(() => {
+    const nameInput = ReactDOM.findDOMNode(document.getElementById("name"));
+    if (nameInput) {
+      nameInput.focus();
+    }
+  }, []);
 
   const { handleBlur, handleChange } = useDriversHandlers(driversData);
 

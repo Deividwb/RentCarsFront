@@ -5,7 +5,7 @@ import DriversRow from "./DriversRow";
 import { baseUrlRoute } from "../utils/drivers.constants";
 import RenderIf from "../../../utils/renderIf/RenderIf";
 import { useDispatch } from "react-redux";
-import { getAllDrivers } from "../store/drivers/drivers.sagas";
+import {  getAllDrivers } from "../store/drivers/drivers.sagas";
 import { useAllDrivers } from "../hooks/use-drivers";
 import { clearDrivers } from "../store/drivers/drivers.store";
 
@@ -19,7 +19,7 @@ const DriversTable = () => {
 
   useEffect(() => {
     setLoadAllDrivers();
-    // return () => dispatch(clearDrivers());
+    return () => dispatch(clearDrivers());
   }, [dispatch, setLoadAllDrivers]);
 
   return (

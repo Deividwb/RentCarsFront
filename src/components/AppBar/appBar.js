@@ -135,7 +135,7 @@ export default function PrimarySearchAppBar() {
     <>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
-          position="fixed"
+          // position="fixed"
           sx={{
             minHeight: 200,
             background: "linear-gradient(to right, #380E58, #00C6FF)",

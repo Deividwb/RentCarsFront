@@ -7,6 +7,7 @@ import {
   updateDriversData,
   updategetAllDrivers,
 } from "./drivers.store";
+import { toast } from "react-toastify";
 
 export const getAllDrivers = createAction("drivers/getAllDrivers");
 export const getByIdDrivers = createAction("drivers/getByIdDrivers");
@@ -47,12 +48,12 @@ function* deleteDriversSagas({ payload }) {
     yield call(api.delete, `/${baseUrlApi}/${"id?id="}${payload.id}`);
 
     yield put(getAllDrivers());
+    toast.success("Sucesso");
   } catch (error) {
     console.log("Tratar o erro:", error);
   }
 }
 
-//////imprementar/////////////////////////////////
 function* postDriversSagas({ payload }) {
   //   const { establishmentReducer } = yield select();
   //   const { companyReferenceId, startValidityDate } = establishmentReducer;
@@ -66,6 +67,7 @@ function* postDriversSagas({ payload }) {
     });
     console.log("DentroSagas:", data);
     yield put(getAllDrivers());
+    toast.success("Sucesso");
   } catch (error) {
     console.log("Tratar o erro:", error);
   }
@@ -80,6 +82,7 @@ function* putDriversSagas({ payload }) {
     );
 
     yield put(getAllDrivers());
+    toast.success("Sucesso");
   } catch (error) {
     console.log("Tratar o erro:", error);
   }

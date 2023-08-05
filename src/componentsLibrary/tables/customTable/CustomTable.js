@@ -26,8 +26,9 @@ import { tableStyles } from "./style";
 import { useState } from "react";
 import CustomContainedButton from "../../buttons/CustomContainedButton";
 import AddIcon from "@mui/icons-material/Add";
-
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { baseUrlRoute } from "../../../components/Driver/utils/drivers.constants";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -76,7 +77,7 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead>
+    <TableHead sx={{ position: "sticky", top: 0, zIndex: 1 }}>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
@@ -164,7 +165,11 @@ function EnhancedTableToolbar(props) {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
-            <DeleteIcon />
+            <DeleteIcon
+              onClick={() =>
+                toast.info("Este recurso ainda será implementado!!")
+              }
+            />
           </IconButton>
         </Tooltip>
       ) : (
@@ -270,13 +275,21 @@ const CustomTable = ({
 
   return (
     <>
-      <CustomContainedButton
-        label="Incluir"
-        size="large"
-        handleClick={handleNew}
-        startIcon={<AddIcon />}
-      />
-      <Box sx={{ width: "100%" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          padding: 5,
+        }}
+      >
+        <CustomContainedButton
+          label="Incluir"
+          size="large"
+          handleClick={() => navigate(`/${baseUrlRoute}/new`)}
+          startIcon={<AddIcon />}
+        />
+      </div>
+      <Box sx={{ height: "100vh", overflow: "auto", paddingBottom: 25 }}>
         <Paper sx={{ width: "100%", mb: 2 }}>
           <EnhancedTableToolbar numSelected={selected.length} title={title} />
           <TableContainer>

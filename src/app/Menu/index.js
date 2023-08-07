@@ -66,7 +66,7 @@ const Menu = () => {
               <Avatar
                 alt="Deivid"
                 src={DwbImg}
-                sx={{ width: 80, height: 80 }}              
+                sx={{ width: 80, height: 80 }}
               />
               <Typography variant="h6" component="h2">
                 Deivid
@@ -95,7 +95,7 @@ const Menu = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/teste"}>
+                  <NavLink to={"/cars-table"}>
                     <DriveEtaTwoToneIcon className="bx bx-home-alt icon" />
                     <span className="text nav-text">
                       {language ? "Carros" : "Cars"}
@@ -103,7 +103,7 @@ const Menu = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/register_driver"}>
+                  <NavLink to={"/support_driver"}>
                     <HomeIcon className="bx bx-home-alt icon" />
                     <span className="text nav-text">
                       {language ? "Manutenção" : "Suppport"}

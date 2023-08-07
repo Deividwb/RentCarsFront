@@ -285,7 +285,7 @@ const CustomTable = ({
         <CustomContainedButton
           label="Incluir"
           size="large"
-          handleClick={() => navigate(`/${baseUrlRoute}/new`)}
+          handleClick={handleNew}
           startIcon={<AddIcon />}
         />
       </div>

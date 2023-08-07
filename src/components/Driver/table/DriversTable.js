@@ -5,7 +5,7 @@ import DriversRow from "./DriversRow";
 import { baseUrlRoute } from "../utils/drivers.constants";
 import RenderIf from "../../../utils/renderIf/RenderIf";
 import { useDispatch } from "react-redux";
-import {  getAllDrivers } from "../store/drivers/drivers.sagas";
+import { getAllDrivers } from "../store/drivers/drivers.sagas";
 import { useAllDrivers } from "../hooks/use-drivers";
 import { clearDrivers } from "../store/drivers/drivers.store";
 
@@ -25,6 +25,11 @@ const DriversTable = () => {
   return (
     <>
       <RenderIf condition={allDrivers.length}>
+        {/* <PDFDownloadLink document={<LoaderReport />} fileName="driver.pdf">
+          <Button variant="contained" startIcon={<PictureAsPdfIcon />}>
+            Gerar Relatório
+          </Button>
+        </PDFDownloadLink> */}
         <CustomTable
           data={allDrivers}
           headCells={headCells}

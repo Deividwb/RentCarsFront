@@ -3,14 +3,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Menu from "./app/Menu";
 import AppBarComponent from "./components/AppBar/appBar";
-import DriverTable from "./components/Driver/driverTable";
 import RegisterDriver from "./components/Support/support";
-import DriversReport from "./components/Reports/driversReport";
-import LoaderReport from "./components/Reports/loaderReport";
+// import DriversReport from "./components/Reports/driversReport";
+// import LoaderReport from "./components/Reports/loaderReport";
 import Teste from "./components/teste";
 import { useSelector } from "react-redux";
 import DriversTable from "./components/Driver/table/DriversTable";
 import DriversForm from "./components/Driver/form/tabs/DriversForm";
+import CarsTable from "./components/cars/table/CarsTable";
+import SupportTable from "./components/Support/support";
 
 const Router = () => {
   const menuActive = useSelector((state) => state.menu.isActive);
@@ -26,7 +27,7 @@ const Router = () => {
           className={menuActive ? "homeTwo" : "home"}
           style={{
             marginTop: 110,
-            padding: "0 30px",      
+            padding: "0 30px",
           }}
         >
           <Routes>
@@ -35,8 +36,8 @@ const Router = () => {
             <Route path="/drivers-table/new" element={<DriversForm />} />
             <Route path="/drivers-table/:id/edit" element={<DriversForm />} />
 
-            <Route path="/register_driver" element={<RegisterDriver />} />
-            <Route path="/teste" element={<Teste />} />
+            <Route path="/cars-table" element={<CarsTable />} />
+            <Route path="/support_driver" element={<SupportTable />} />
             {/* <Route
               path="/loader-report"
               element={

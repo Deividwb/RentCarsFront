@@ -32,64 +32,35 @@ const Drivers = () => {
             required
             error={!!messages.name}
             helperText={messages.name}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={2}>
-          <CustonTextField
-            id="age"
-            name="age"
-            label="Idade"
-            value={driversData.age}
-            handleChange={handleChange()}
-            handleBlur={handleBlur()}
-            required
-            type="number"
-            error={!!messages.age}
-            helperText={messages.age}
             focus={true}
           />
         </Grid>
 
-        <Grid item xs={12} sm={10}>
+        <Grid item xs={12} sm={6}>
           <CustonTextField
-            id="address"
-            name="address"
-            label="Endereço"
-            value={driversData.address}
+            id="paymentDay"
+            name="paymentDay"
+            label="Dia de Pagamento"
+            value={driversData.paymentDay}
             handleChange={handleChange()}
             handleBlur={handleBlur()}
             required
-            error={!!messages.address}
-            helperText={messages.address}
+            error={!!messages.paymentDay}
+            helperText={messages.paymentDay}
           />
         </Grid>
 
-        <Grid item xs={12} sm={10}>
+        <Grid item xs={12} sm={6}>
           <CustonTextField
-            id="city"
-            name="city"
-            label="Cidade"
-            value={driversData.city}
+            id="location"
+            name="location"
+            label="Locação"
+            value={driversData.location}
             handleChange={handleChange()}
             handleBlur={handleBlur()}
             required
-            error={!!messages.city}
-            helperText={messages.city}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={2}>
-          <CustonTextField
-            id="sexo"
-            name="sexo"
-            label="Sexo"
-            value={driversData.sexo}
-            handleChange={handleChange()}
-            handleBlur={handleBlur()}
-            required
-            error={!!messages.sexo}
-            helperText={messages.sexo}
+            error={!!messages.location}
+            helperText={messages.location}
           />
         </Grid>
       </Grid>

@@ -92,7 +92,7 @@ const useValidate = ({
             const nameInput = ReactDOM.findDOMNode(
               document.getElementById(fieldNameWithError)
             );
-            nameInput.focus();
+            nameInput?.focus();
           }
 
           return errorMessageIndex >= 0;

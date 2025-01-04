@@ -1,31 +1,28 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import { createAction } from "@reduxjs/toolkit";
 import api from "../../../../services/api";
-import { baseUrlApi } from "../../utils/drivers.constants";
-import {
-  clearDrivers,
-  updateDriversData,
-  updategetAllDrivers,
-} from "./drivers.store";
+import { clearCars, updateCarsData, updategetAllCars } from "./cars.store";
 import { toast } from "react-toastify";
+import { baseUrlApi } from "../../utils/cars.constants";
 
-export const getAllDrivers = createAction("drivers/getAllDrivers");
-export const getByIdDrivers = createAction("drivers/getByIdDrivers");
-export const deleteDrivers = createAction("drivers/deleteDrivers");
-export const postDrivers = createAction("drivers/postDrivers");
-export const putDrivers = createAction("drivers/putDrivers");
+export const getAllCars = createAction("cars/getAllCars");
+export const getByIdCars = createAction("cars/getByIdCars");
+export const deleteCars = createAction("cars/deleteCars");
+export const postCars = createAction("cars/postCars");
+export const putCars = createAction("cars/putCars");
 
-function* getAllDriversSagas() {
+function* getAllCarsSagas() {
   try {
     const { data } = yield call(api.get, `/${baseUrlApi}`);
-    yield put(clearDrivers());
-    yield put(updategetAllDrivers(data));
+
+    yield put(clearCars());
+    yield put(updategetAllCars(data));
   } catch (error) {
     console.log("Tratar o erro:", error);
   }
 }
 
-function* getByIdDriversSagas({ payload }) {
+function* getByIdCarsSagas({ payload }) {
   try {
     const { data } = yield call(
       api.get,
@@ -35,26 +32,25 @@ function* getByIdDriversSagas({ payload }) {
     const prepareData = {
       ...data,
     };
-    console.log("Dentro SagasByid", prepareData);
-    yield put(updateDriversData(prepareData));
+
+    yield put(updateCarsData(prepareData));
   } catch (error) {
-    console.log("Rota:", `/${baseUrlApi}/${"id?id="}${payload.id}`);
     console.log("Tratar o erro:", error);
   }
 }
 
-function* deleteDriversSagas({ payload }) {
+function* deleteCarsSagas({ payload }) {
   try {
     yield call(api.delete, `/${baseUrlApi}/${"id?id="}${payload.id}`);
 
-    yield put(getAllDrivers());
+    yield put(getAllCars());
     toast.success("Sucesso");
   } catch (error) {
     console.log("Tratar o erro:", error);
   }
 }
 
-function* postDriversSagas({ payload }) {
+function* postCarsSagas({ payload }) {
   //   const { establishmentReducer } = yield select();
   //   const { companyReferenceId, startValidityDate } = establishmentReducer;
 
@@ -66,14 +62,14 @@ function* postDriversSagas({ payload }) {
       //   },
     });
     console.log("DentroSagas:", data);
-    yield put(getAllDrivers());
+    yield put(getAllCars());
     toast.success("Sucesso");
   } catch (error) {
     console.log("Tratar o erro:", error);
   }
 }
 
-function* putDriversSagas({ payload }) {
+function* putCarsSagas({ payload }) {
   try {
     yield call(
       api.put,
@@ -81,7 +77,7 @@ function* putDriversSagas({ payload }) {
       payload.data
     );
 
-    yield put(getAllDrivers());
+    yield put(getAllCars());
     toast.success("Sucesso");
   } catch (error) {
     console.log("Tratar o erro:", error);
@@ -89,9 +85,9 @@ function* putDriversSagas({ payload }) {
 }
 
 export default all([
-  takeLatest(getAllDrivers.type, getAllDriversSagas),
-  takeLatest(getByIdDrivers.type, getByIdDriversSagas),
-  takeLatest(deleteDrivers.type, deleteDriversSagas),
-  takeLatest(postDrivers.type, postDriversSagas),
-  takeLatest(putDrivers.type, putDriversSagas),
+  takeLatest(getAllCars.type, getAllCarsSagas),
+  takeLatest(getByIdCars.type, getByIdCarsSagas),
+  takeLatest(deleteCars.type, deleteCarsSagas),
+  takeLatest(postCars.type, postCarsSagas),
+  takeLatest(putCars.type, putCarsSagas),
 ]);

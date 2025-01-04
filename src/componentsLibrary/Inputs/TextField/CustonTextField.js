@@ -9,13 +9,14 @@ export default function CustonTextField({
   label,
   value,
   handleChange,
+  handleBlur,
   type,
   disabled,
   required = false,
   startIcon,
   error,
   helperText,
-  focus
+  focus,
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -23,7 +24,7 @@ export default function CustonTextField({
     setIsFocused(true);
   };
 
-  const handleBlur = () => {
+  const handleBlurFocus = () => {
     setIsFocused(false);
   };
 

@@ -2,15 +2,12 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { createAction } from "@reduxjs/toolkit";
 import api from "../../../../services/api";
 import { baseUrlApi } from "../../utils/drivers.constants";
-import {
-  clearDrivers,
-  updateDriversData,
-  updategetAllDrivers,
-} from "./drivers.store";
+import { updateDriversData, updateGetAllDrivers } from "./drivers.store";
 import { toast } from "react-toastify";
 
 export const getAllDrivers = createAction("drivers/getAllDrivers");
 export const getByIdDrivers = createAction("drivers/getByIdDrivers");
+export const getViaCep = createAction("drivers/getViaCep");
 export const deleteDrivers = createAction("drivers/deleteDrivers");
 export const postDrivers = createAction("drivers/postDrivers");
 export const putDrivers = createAction("drivers/putDrivers");
@@ -18,8 +15,8 @@ export const putDrivers = createAction("drivers/putDrivers");
 function* getAllDriversSagas() {
   try {
     const { data } = yield call(api.get, `/${baseUrlApi}`);
-    yield put(clearDrivers());
-    yield put(updategetAllDrivers(data));
+
+    yield put(updateGetAllDrivers(data));
   } catch (error) {
     console.log("Tratar o erro:", error);
   }
@@ -35,62 +32,76 @@ function* getByIdDriversSagas({ payload }) {
     const prepareData = {
       ...data,
     };
-    console.log("Dentro SagasByid", prepareData);
     yield put(updateDriversData(prepareData));
   } catch (error) {
-    console.log("Rota:", `/${baseUrlApi}/${"id?id="}${payload.id}`);
     console.log("Tratar o erro:", error);
   }
 }
 
 function* deleteDriversSagas({ payload }) {
   try {
-    yield call(api.delete, `/${baseUrlApi}/${"id?id="}${payload.id}`);
+    const resp = yield call(
+      api.delete,
+      `/${baseUrlApi}/${"id?id="}${payload.id}`
+    );
 
     yield put(getAllDrivers());
-    toast.success("Sucesso");
+    toast.success(resp.data);
   } catch (error) {
     console.log("Tratar o erro:", error);
   }
 }
 
 function* postDriversSagas({ payload }) {
-  //   const { establishmentReducer } = yield select();
-  //   const { companyReferenceId, startValidityDate } = establishmentReducer;
-
   try {
-    const { data } = yield call(api.post, `/${baseUrlApi}`, payload.data, {
-      //   headers: {
-      //     //   company_reference_id: companyReferenceId,
-      //     //   start_validity_date: startValidityDate,
-      //   },
-    });
-    console.log("DentroSagas:", data);
-    yield put(getAllDrivers());
-    toast.success("Sucesso");
+    const resp = yield call(api.post, `/${baseUrlApi}`, payload.data);
+
+    toast.success(resp.data);
   } catch (error) {
-    console.log("Tratar o erro:", error);
+    toast.success("Sucesso");
   }
 }
 
 function* putDriversSagas({ payload }) {
   try {
-    yield call(
+    const data = yield call(
       api.put,
       `/${baseUrlApi}/${"id?id="}${payload.id}`,
       payload.data
     );
-
-    yield put(getAllDrivers());
-    toast.success("Sucesso");
+    yield put(updateGetAllDrivers(data));
   } catch (error) {
     console.log("Tratar o erro:", error);
+  }
+}
+
+function* getViaCepSagas({ payload }) {
+  try {
+    const { data } = yield call(
+      api.get,
+      `https://viacep.com.br/ws/${payload.cep}/json/`
+    );
+    const prepareData = {
+      ...data,
+      city: data.localidade,
+      district: data.bairro,
+      street: data.logradouro,
+    };
+
+    if (!prepareData.erro) {
+      yield put(updateDriversData(prepareData));
+    } else {
+      toast.error("Atenção: Confira o CEP digitado!!");
+    }
+  } catch (error) {
+    toast.error("CEP não Existe");
   }
 }
 
 export default all([
   takeLatest(getAllDrivers.type, getAllDriversSagas),
   takeLatest(getByIdDrivers.type, getByIdDriversSagas),
+  takeLatest(getViaCep.type, getViaCepSagas),
   takeLatest(deleteDrivers.type, deleteDriversSagas),
   takeLatest(postDrivers.type, postDriversSagas),
   takeLatest(putDrivers.type, putDriversSagas),

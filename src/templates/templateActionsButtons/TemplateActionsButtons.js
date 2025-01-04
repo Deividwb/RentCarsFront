@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { DialogTitle, TableCell, Tooltip } from "@mui/material";
-import EditNoteTwoToneIcon from "@mui/icons-material/EditNoteTwoTone";
-import DeleteForeverTwoToneIcon from "@mui/icons-material/DeleteForeverTwoTone";
-import { blue } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { CardFooter } from "reactstrap";
 import CustomDialogModal from "../../componentsLibrary/Modal/dialog/DialogModal";
 import { templateActionsButtonsStyles } from "./style";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 const TemplateActionsButtons = ({
   redirect,
   id,
   item,
-  getItem,
+  // getItem,
   deleteItem,
+  className,
 }) => {
   const classes = templateActionsButtonsStyles();
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const TemplateActionsButtons = ({
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleEdit = () => {
-    dispatch(getItem({ id: id }));
+    // dispatch(getItem({ id: id }));
     navigate(redirect);
   };
 
@@ -35,26 +35,16 @@ const TemplateActionsButtons = ({
   return (
     <>
       <TableCell align="center" width="12%">
-        <div className={classes.containerButton}>
+        <div className={className}>
           <Tooltip title={"Editar dados"}>
-            <IconButton
-              size="small"
-              className={classes.button}
-              onClick={handleEdit}
-            >
-              <EditNoteTwoToneIcon sx={{ color: blue[900], fontSize: 30 }} />
+            <IconButton size="small" onClick={handleEdit}>
+              <EditOutlinedIcon />
             </IconButton>
           </Tooltip>
 
           <Tooltip title={"Deletar dados"}>
-            <IconButton
-              size="small"
-              className={classes.button}
-              onClick={() => setOpenDialog(true)}
-            >
-              <DeleteForeverTwoToneIcon
-                sx={{ color: blue[900], fontSize: 30 }}
-              />
+            <IconButton size="small" onClick={() => setOpenDialog(true)}>
+              <DeleteOutlineIcon />
             </IconButton>
           </Tooltip>
         </div>

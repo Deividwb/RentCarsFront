@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CustomTable from "../../../componentsLibrary/tables/customTable/CustomTable";
 import { headCells } from "../utils/driversTable.constants";
 import DriversRow from "./DriversRow";
@@ -7,38 +7,50 @@ import RenderIf from "../../../utils/renderIf/RenderIf";
 import { useDispatch } from "react-redux";
 import { getAllDrivers } from "../store/drivers/drivers.sagas";
 import { useAllDrivers } from "../hooks/use-drivers";
-import { clearDrivers } from "../store/drivers/drivers.store";
+import { Button } from "@mui/material";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import { useDriversHandlers } from "../hooks/use-drivers/useDriversHandlers";
 
 const DriversTable = () => {
   const dispatch = useDispatch();
   const allDrivers = useAllDrivers();
 
-  const setLoadAllDrivers = useCallback(() => {
-    dispatch(getAllDrivers());
-  }, [dispatch]);
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const handleSelectedChange = (newSelected) => {
+    setSelectedItems(newSelected);
+  };
+
+  const {
+    extraHandlers: { handleGenereteReport },
+  } = useDriversHandlers();
 
   useEffect(() => {
-    setLoadAllDrivers();
-    return () => dispatch(clearDrivers());
-  }, [dispatch, setLoadAllDrivers]);
+    dispatch(getAllDrivers());
+  }, [dispatch]);
 
   return (
     <>
       <RenderIf condition={allDrivers.length}>
-        {/* <PDFDownloadLink document={<LoaderReport />} fileName="driver.pdf">
-          <Button variant="contained" startIcon={<PictureAsPdfIcon />}>
-            Gerar Relatório
+        <>
+          <Button
+            onClick={() => handleGenereteReport(selectedItems)}
+            variant="contained"
+            startIcon={<PictureAsPdfIcon />}
+          >
+            Gerar Contrato
           </Button>
-        </PDFDownloadLink> */}
-        <CustomTable
-          data={allDrivers}
-          headCells={headCells}
-          redirect={`/${baseUrlRoute}/new`}
-          checkBox
-          rowComponent={DriversRow}
-          title={"Motoristas"}
-        />
+        </>
       </RenderIf>
+      <CustomTable
+        data={allDrivers.length ? allDrivers : []}
+        headCells={headCells}
+        redirect={`/${baseUrlRoute}/new`}
+        checkBox
+        rowComponent={DriversRow}
+        title={"Motoristas"}
+        onSelectedChange={handleSelectedChange}
+      />
     </>
   );
 };

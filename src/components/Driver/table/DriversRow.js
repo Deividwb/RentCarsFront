@@ -8,12 +8,13 @@ const DriversRow = (props) => {
   return (
     <>
       <TableCell align="left">{props.name}</TableCell>
-      <TableCell align="right">{props.age}</TableCell>
-      <TableCell align="right">{props.address}</TableCell>
       <TableCell align="right">{props.city}</TableCell>
-      <TableCell align="right">{props.sexo}</TableCell>
+      <TableCell align="right">{props.district}</TableCell>
+      <TableCell align="right">{props.paymentDay}</TableCell>
+      <TableCell align="right">{props.location}</TableCell>
 
       <TemplateActionsButtons
+        className={""}
         redirect={`/${baseUrlRoute}/${props.id}/edit`}
         id={props.id}
         item={props.name}

@@ -3,11 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 export const initialState = {
   data: {
     name: "",
-    age: "",
-    address: "",
+    paymentDay: "",
+    location: "",
+    cep: "",
     city: "",
-    sexo: "",
+    district: "",
+    localidade: "",
+    uf: "",
+    street: "",
+    number: null,
   },
+  loading: false,
   messages: {},
   getAllDrivers: [],
 };
@@ -22,7 +28,10 @@ const drivers = createSlice({
     updateDriversMessages: (state, action) => {
       state.messages = { ...state.messages, ...action.payload };
     },
-    updategetAllDrivers: (state, action) => {
+    updateDriversLoading: (state, action) => {
+      state.loading = { ...state.loading, ...action.payload };
+    },
+    updateGetAllDrivers: (state, action) => {
       state.getAllDrivers = action.payload;
     },
     clearDrivers: () => initialState,
@@ -32,7 +41,8 @@ const drivers = createSlice({
 export const {
   updateDriversData,
   updateDriversMessages,
-  updategetAllDrivers,
+  updateDriversLoading,
+  updateGetAllDrivers,
   clearDrivers,
 } = drivers.actions;
 
@@ -40,6 +50,8 @@ export const selectDrivers = (state) => state.drivers.driversData;
 export const selectDriversData = (state) => state.drivers.driversData.data;
 export const selectDriversMessages = (state) =>
   state.drivers.driversData.messages;
+export const selectDriversLoading = (state) =>
+  state.drivers.driversData.loading;
 export const selectAllDrivers = (state) =>
   state.drivers.driversData.getAllDrivers;
 

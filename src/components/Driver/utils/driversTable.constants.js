@@ -7,31 +7,31 @@ export const headCells = [
     align: "left",
   },
   {
-    id: "calories",
-    numeric: true,
-    disablePadding: false,
-    label: "Idade",
-    align: "right",
-  },
-  {
-    id: "fat",
-    numeric: true,
-    disablePadding: false,
-    label: "Endereço",
-    align: "right",
-  },
-  {
-    id: "carbs",
+    id: "city",
     numeric: true,
     disablePadding: false,
     label: "Cidade",
     align: "right",
   },
   {
-    id: "protein",
+    id: "district",
     numeric: true,
     disablePadding: false,
-    label: "Sexo",
+    label: "Bairro",
+    align: "right",
+  },
+  {
+    id: "paymentDay",
+    numeric: true,
+    disablePadding: false,
+    label: "Dia de Pagamento",
+    align: "right",
+  },
+  {
+    id: "location",
+    numeric: true,
+    disablePadding: false,
+    label: "Locação",
     align: "right",
   },
   {
@@ -40,7 +40,6 @@ export const headCells = [
     disablePadding: false,
     label: "Ações",
     align: "center",
-
-    // sort: true,
+    // sort: false,
   },
 ];

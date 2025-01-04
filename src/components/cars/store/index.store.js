@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import driversReducer from "./drivers/drivers.store";
+import carsReducer from "./cars/cars.store";
 
-const drivers = combineReducers({
-    driversData: driversReducer,
+const cars = combineReducers({
+  carsData: carsReducer,
 });
 
-export default drivers;
+export default cars;

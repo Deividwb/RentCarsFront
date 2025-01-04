@@ -47,4 +47,51 @@
   padding: 10px;
 }
 
+/*///////////////////////////////////////seta image
+
+/* Estilos CSS */
+.nav-container {
+  position: relative;
+    /* Adicione tabIndex para tornar o container focável */
+    outline: none; /* Remover a borda de foco padrão */      
+}
+
+.nav-button {
+  position: absolute;
+  font-size: 252px; /* Ajuste o tamanho das setas */
+  color: white;
+  cursor: pointer;
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Exiba as setas apenas quando .nav-container estiver em foco */
+.nav-container:hover .nav-button {
+  display: block;
+}
+
+/* .nav-container:focus .nav-button {
+  display: block;
+} */
+
+.prev {
+  top: 50%; /* Centraliza verticalmente */
+  left: -2%;
+  transform: translateY(-250%); /* Centraliza verticalmente */
+}
+
+.next {
+  top: 50%; /* Centraliza verticalmente */
+  right: -66%;
+  transform: translateY(-250%); /* Centraliza verticalmente */
+}
+
 

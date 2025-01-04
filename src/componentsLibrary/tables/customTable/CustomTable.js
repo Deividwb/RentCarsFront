@@ -196,13 +196,14 @@ const CustomTable = ({
   title,
   redirect,
   align,
+  onSelectedChange,
 }) => {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("calories");
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const classes = tableStyles();
   const navigate = useNavigate();
 
@@ -214,19 +215,22 @@ const CustomTable = ({
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = data.map((n) => n.name);
+      const newSelected = data.map((n) => n.id);
+
       setSelected(newSelected);
+      onSelectedChange(newSelected);
       return;
     }
     setSelected([]);
+    onSelectedChange([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, row) => {
+    const selectedIndex = selected.indexOf(row.id);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, row.id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -239,6 +243,7 @@ const CustomTable = ({
     }
 
     setSelected(newSelected);
+    onSelectedChange(row);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -266,7 +271,7 @@ const CustomTable = ({
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
-    [order, orderBy, page, rowsPerPage]
+    [order, orderBy, page, rowsPerPage, data]
   );
 
   const handleNew = () => {
@@ -310,18 +315,18 @@ const CustomTable = ({
 
               <TableBody>
                 {visibleRows.map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       className={classes.hoverRow}
                       hover
-                      // onClick={(event) => handleClick(event, row.name)}
+                      // onClick={(event) => handleClick(event, row.id)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.id}
                       selected={isItemSelected}
                       margin={50}
                     >
@@ -330,7 +335,7 @@ const CustomTable = ({
                           <Checkbox
                             color="primary"
                             checked={isItemSelected}
-                            onClick={(event) => handleClick(event, row.name)}
+                            onClick={(event) => handleClick(event, row)}
                             inputProps={{
                               "aria-labelledby": labelId,
                             }}

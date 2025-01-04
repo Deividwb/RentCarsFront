@@ -5,15 +5,15 @@ import { useState } from "react";
 import { DialogTitle } from "@mui/material";
 import { CardFooter } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-import { useSubmit } from "../hooks/use-submit/driversSubmit";
+import { useSubmit } from "../hooks/use-submit/carsSubmit";
 import SaveIcon from "@mui/icons-material/Save";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import IconButton from "@mui/material/IconButton";
 
-const DriversSubmit = () => {
+const CarsSubmit = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const navigate = useNavigate();
-  const { onDriversSubmit } = useSubmit();
+  const { onCarsSubmit } = useSubmit();
 
   const handleOpen = () => {
     setOpenDialog(true);
@@ -84,7 +84,7 @@ const DriversSubmit = () => {
         <div style={{ paddingLeft: 50 }}>
           <CustomContainedButton
             label="Salvar"
-            handleClick={onDriversSubmit}
+            handleClick={onCarsSubmit}
             startIcon={<SaveIcon />}
           />
         </div>
@@ -93,4 +93,4 @@ const DriversSubmit = () => {
   );
 };
 
-export default DriversSubmit;
+export default CarsSubmit;

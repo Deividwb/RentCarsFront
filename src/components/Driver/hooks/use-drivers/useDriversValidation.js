@@ -14,16 +14,25 @@ export const useDriversValidation = () => {
       name: "name",
     },
     {
-      name: "age",
+      name: "paymentDay",
     },
     {
-      name: "address",
+      name: "location",
+    },
+    {
+      name: "cep",
     },
     {
       name: "city",
     },
     {
-      name: "sexo",
+      name: "district",
+    },
+    {
+      name: "uf",
+    },
+    {
+      name: "street",
     },
   ];
 

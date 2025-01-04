@@ -22,7 +22,7 @@ import { Typography } from "@mui/material";
 const Menu = () => {
   const [active, setActive] = useState();
   const [isDark, setIsDark] = useState(false);
-  const [language, setLanguage] = useState(false);
+  const [language, setLanguage] = useState(true);
   const classes = menuStyles();
 
   const dispatch = useDispatch();
